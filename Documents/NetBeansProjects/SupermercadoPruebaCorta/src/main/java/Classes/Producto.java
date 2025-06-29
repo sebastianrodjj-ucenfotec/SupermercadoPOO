@@ -19,6 +19,10 @@ public class Producto {
     private IVA iva;
     private Expira expira;
     
+    /**
+     * Constructor por defecto. Inicializa todos los valores con información básica.
+     */
+    
     public Producto(){
         codigo="";
         nombre="";
@@ -29,6 +33,10 @@ public class Producto {
         expira= new Expira();
         
     }
+   
+    /**
+     * Constructor sobrecargado. Permite crear un producto con todos sus valores asignados.
+     */
     
     public Producto (String codigo, String nombre, int existencia, double precioBase, double porcentajeGanancia, IVA iva, Expira expira){
         this.codigo=codigo;
@@ -141,17 +149,28 @@ public class Producto {
         this.expira = expira;
     }
 
-    // Método que indica si un producto está expirado para una fecha dada
+    /**
+     * Verifica si el producto está expirado para una fecha dada.
+     * @param fechaCorte la fecha con la que se compara
+     * @return true si la fecha de expiración es anterior a fechaCorte
+     */
+    
     public boolean expirado(LocalDate fechaCorte) {
         return expira.esAnteriorA(fechaCorte); // Usa isBefore internamente
     }
 
-    // Calcula la inversión total (precio base × existencia)
+    /**
+     * Calcula la inversión total en este producto (precioBase × existencia).
+     * @return total invertido
+     */
     public double calcularInversion() {
         return precioBase * existencia;
     }
 
-    // Calcula el precio de venta unitario (precio base + ganancia + IVA)
+    /**
+     * Calcula el precio final de venta considerando ganancia e IVA.
+     * @return precio unitario con ganancia e impuesto
+     */
     public double calcularPrecioVenta() {
         double ganancia = precioBase * (porcentajeGanancia / 100);
         double precioSinIVA = precioBase + ganancia;
@@ -159,7 +178,9 @@ public class Producto {
         return precioSinIVA + montoIVA;
     }
 
-    // Representación en texto del producto
+    /**
+     * Representación textual del producto con todos sus atributos visibles.
+     */    
     @Override
     public String toString() {
         return "Codigo: " + codigo +

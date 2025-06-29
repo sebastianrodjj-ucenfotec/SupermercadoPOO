@@ -10,14 +10,19 @@ package Classes;
  */
 public class IVA {
 
+    // Porcentaje del IVA (por ejemplo, 13.0 para 13%)
     private double valor;
+    
+    // Período durante el cual este valor del IVA es válido
     private Periodo periodo;
-
+    
+    // Constructor por defecto: establece un IVA de 0.0% y un período por defecto
     public IVA() {
         valor = 0.0;
         periodo = new Periodo();
     }
 
+    // Constructor sobrecargado: permite establecer el valor y el período
     public IVA(double valor, Periodo periodo) {
         this.valor = valor;
         this.periodo = periodo;
@@ -26,6 +31,8 @@ public class IVA {
     /**
      * @return the valor
      */
+    
+    // Getter del porcentaje del IVA
     public double getValor() {
         return valor;
     }
@@ -33,6 +40,8 @@ public class IVA {
     /**
      * @param valor the valor to set
      */
+    
+    // Setter para modificar el valor del IVA
     public void setValor(double valor) {
         this.valor = valor;
     }
@@ -40,6 +49,8 @@ public class IVA {
     /**
      * @return the periodo
      */
+    
+    // Getter del período asociado
     public Periodo getPeriodo() {
         return periodo;
     }
@@ -47,9 +58,13 @@ public class IVA {
     /**
      * @param periodo the periodo to set
      */
+    
+    // Setter para modificar el período
     public void setPeriodo(Periodo periodo) {
         this.periodo = periodo;
     }
+    
+    // Representación textual del IVA con su período
     @Override
     public String toString() {
         return "IVA: " + valor + "%\n" + periodo.toString();

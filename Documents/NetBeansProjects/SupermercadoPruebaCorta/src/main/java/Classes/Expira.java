@@ -12,12 +12,15 @@ import java.time.LocalDate;
  */
 public class Expira {
 
+    // Atributo privado que almacena la fecha de expiración
     private LocalDate fechaExpira;
 
+    // Constructor por defecto: establece la fecha de expiración como la fecha actual
     public Expira() {
         fechaExpira = LocalDate.now();
     }
-
+    
+    // Constructor sobrecargado: permite especificar una fecha exacta
     public Expira(LocalDate fechaExpira) {
         this.fechaExpira=fechaExpira;
 
@@ -26,6 +29,8 @@ public class Expira {
     /**
      * @return the fechaExpira
      */
+    
+    // Getter para obtener la fecha de expiración
     public LocalDate getFechaExpira() {
         return fechaExpira;
     }
@@ -33,6 +38,8 @@ public class Expira {
     /**
      * @param fechaExpira the fechaExpira to set
      */
+    
+    // Setter para cambiar la fecha de expiración
     public void setFechaExpira(LocalDate fechaExpira) {
         this.fechaExpira = fechaExpira;
     }
@@ -45,6 +52,12 @@ public class Expira {
         return fechaExpira.isBefore(fechaReferencia);
     }
 
+    /**
+     * Representación textual del objeto Expira.
+     * @return una cadena con la fecha de expiración
+     */
+    
+    @Override 
     public String toString(){
         return "Fecha de expiracion" + fechaExpira;
     }

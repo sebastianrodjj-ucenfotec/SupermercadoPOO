@@ -20,26 +20,47 @@ public class Supermercado {
     private String telefono;
     private ArrayList<Producto> productos;
 
-    // Constructor por defecto (C.Default)
+    /**
+     * Constructor por defecto.
+     * Inicializa el nombre y teléfono como cadenas vacías, y una lista vacía de productos.
+     */
     public Supermercado() {
         nombre = "";
         telefono = "";
         productos = new ArrayList<>();
     }
 
-    // Constructor sobrecargado (C.Sobrecargado)
+    /**
+     * Constructor sobrecargado.
+     * 
+     * @param nombre nombre del supermercado
+     * @param telefono número de contacto
+     */
+    
     public Supermercado(String nombre, String telefono) {
         this.nombre = nombre;
         this.telefono = telefono;
         productos = new ArrayList<>();
     }
 
-    // Método para insertar producto
+    /**
+     * Inserta un producto al inventario.
+     * 
+     * @param p producto a agregar
+     * @return true si se agregó con éxito
+     */
+    
     public boolean insertarProducto(Producto p) {
         return productos.add(p);
     }
 
-    // Método para calcular la inversión total
+    /**
+     * Calcula la inversión total de productos vigentes.
+     * 
+     * @param fecha fecha de corte para evaluar expiración
+     * @return suma del precio base por existencia de productos no vencidos
+     */
+    
     public double calcularInversionTotal(LocalDate fecha) {
         double total = 0.0;
         for (Producto p : productos) {
@@ -50,7 +71,13 @@ public class Supermercado {
         return total;
     }
 
-    // Método para calcular el valor total de venta
+    /**
+     * Calcula el valor total de venta de productos vigentes.
+     * 
+     * @param fecha fecha de corte
+     * @return suma del precio de venta por existencia de productos no vencidos
+     */
+    
     public double calcularValorDeVenta(LocalDate fecha) {
         double total = 0.0;
         for (Producto p : productos) {
@@ -61,12 +88,24 @@ public class Supermercado {
         return total;
     }
 
-    // Método para calcular la ganancia estimada
+    /**
+     * Calcula la ganancia estimada (venta - inversión).
+     * 
+     * @param fecha fecha de corte
+     * @return ganancia neta potencial
+     */
+    
     public double calcularGanancia(LocalDate fecha) {
         return calcularValorDeVenta(fecha) - calcularInversionTotal(fecha);
     }
 
-    // Método para contar cuántos productos han expirado a una fecha
+    /**
+     * Cuenta cuántos productos están expirados a una fecha dada.
+     * 
+     * @param fecha fecha a evaluar
+     * @return cantidad de productos vencidos
+     */
+    
     public int contarProductosExpirados(LocalDate fecha) {
         int contador = 0;
         for (Producto p : productos) {
@@ -77,7 +116,14 @@ public class Supermercado {
         return contador;
     }
 
-    // Método para cambiar el IVA de un producto por código
+    /**
+     * Cambia el valor de IVA de un producto por su código.
+     * 
+     * @param codigo código del producto
+     * @param nuevoIVA nuevo valor de IVA
+     * @return true si se encontró y actualizó el producto
+     */
+    
     public boolean cambiarIVA(String codigo, double nuevoIVA) {
         for (Producto p : productos) {
             if (p.getCodigo().equals(codigo)) {
@@ -88,7 +134,13 @@ public class Supermercado {
         return false;
     }
 
-    // Método para cambiar la fecha de fin del período de IVA por código
+    /**
+     * Cambia la fecha de fin del período de IVA de un producto por su código.
+     * 
+     * @param codigo código del producto
+     * @param nuevaFecha nueva fecha de fin
+     * @return true si se actualizó correctamente
+     */
     public boolean cambiarFechaFinalIVA(String codigo, LocalDate nuevaFecha) {
         for (Producto p : productos) {
             if (p.getCodigo().equals(codigo)) {
@@ -99,10 +151,15 @@ public class Supermercado {
         return false;
     }
 
+    
+     /**
+     * Representación textual del supermercado y su inventario.
+     */
+    
     // Método toString
     @Override
     public String toString() {
-        String salida = "Supermercado: " + nombre + "\nTelejfono: " + telefono + "\nProductos:\n";
+        String salida = "Supermercado: " + nombre + "\nTelefono: " + telefono + "\nProductos:\n";
         for (Producto p : productos) {
             salida += p.toString() + "\n--------------------------\n";
         }
