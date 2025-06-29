@@ -49,4 +49,3 @@ public class Expira {
         return "Fecha de expiracion" + fechaExpira;
     }
 }
-/* hello c */
