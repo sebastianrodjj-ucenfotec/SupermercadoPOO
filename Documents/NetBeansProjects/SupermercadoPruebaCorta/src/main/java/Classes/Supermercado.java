@@ -6,61 +6,73 @@ package Classes;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+
 /**
- *
+ * Clase que representa un supermercado.
+ * Administra un inventario de productos y realiza cálculos financieros.
+ * Implementa la interfaz OperacionesSupermercado.
+ * 
  * @author sebas
  */
-public class Supermercado implements OperacionesSupermercado{
+public class Supermercado implements OperacionesSupermercado {
 
-    /*
-     Atributos:
-     tipoAcceso + TipoDeDato + nombreIdentificador
-     */
+    // Atributos del supermercado
     private String nombre;
     private String telefono;
     private ArrayList<Producto> productos;
 
-    /**
-     * Constructor por defecto.
-     * Inicializa el nombre y teléfono como cadenas vacías, y una lista vacía de productos.
-     */
+    // Constructor por defecto
     public Supermercado() {
         nombre = "";
         telefono = "";
         productos = new ArrayList<>();
     }
 
-    /**
-     * Constructor sobrecargado.
-     * 
-     * @param nombre nombre del supermercado
-     * @param telefono número de contacto
-     */
-    
+    // Constructor sobrecargado
     public Supermercado(String nombre, String telefono) {
         this.nombre = nombre;
         this.telefono = telefono;
         productos = new ArrayList<>();
     }
 
+    // Getters y setters
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public ArrayList<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(ArrayList<Producto> productos) {
+        this.productos = productos;
+    }
+
     /**
      * Inserta un producto al inventario.
-     * 
-     * @param p producto a agregar
-     * @return true si se agregó con éxito
      */
-    
+    @Override
     public boolean insertarProducto(Producto p) {
         return productos.add(p);
     }
 
     /**
-     * Calcula la inversión total de productos vigentes.
-     * 
-     * @param fecha fecha de corte para evaluar expiración
-     * @return suma del precio base por existencia de productos no vencidos
+     * Calcula la inversión total en productos vigentes.
      */
-    
+    @Override
     public double calcularInversionTotal(LocalDate fecha) {
         double total = 0.0;
         for (Producto p : productos) {
@@ -72,12 +84,9 @@ public class Supermercado implements OperacionesSupermercado{
     }
 
     /**
-     * Calcula el valor total de venta de productos vigentes.
-     * 
-     * @param fecha fecha de corte
-     * @return suma del precio de venta por existencia de productos no vencidos
+     * Calcula el valor estimado de venta de productos vigentes.
      */
-    
+    @Override
     public double calcularValorDeVenta(LocalDate fecha) {
         double total = 0.0;
         for (Producto p : productos) {
@@ -89,23 +98,17 @@ public class Supermercado implements OperacionesSupermercado{
     }
 
     /**
-     * Calcula la ganancia estimada (venta - inversión).
-     * 
-     * @param fecha fecha de corte
-     * @return ganancia neta potencial
+     * Calcula la ganancia estimada sobre productos vigentes.
      */
-    
+    @Override
     public double calcularGanancia(LocalDate fecha) {
         return calcularValorDeVenta(fecha) - calcularInversionTotal(fecha);
     }
 
     /**
-     * Cuenta cuántos productos están expirados a una fecha dada.
-     * 
-     * @param fecha fecha a evaluar
-     * @return cantidad de productos vencidos
+     * Cuenta la cantidad de productos que han expirado.
      */
-    
+    @Override
     public int contarProductosExpirados(LocalDate fecha) {
         int contador = 0;
         for (Producto p : productos) {
@@ -117,13 +120,8 @@ public class Supermercado implements OperacionesSupermercado{
     }
 
     /**
-     * Cambia el valor de IVA de un producto por su código.
-     * 
-     * @param codigo código del producto
-     * @param nuevoIVA nuevo valor de IVA
-     * @return true si se encontró y actualizó el producto
+     * Cambia el valor del IVA para un producto específico.
      */
-    
     public boolean cambiarIVA(String codigo, double nuevoIVA) {
         for (Producto p : productos) {
             if (p.getCodigo().equals(codigo)) {
@@ -135,11 +133,7 @@ public class Supermercado implements OperacionesSupermercado{
     }
 
     /**
-     * Cambia la fecha de fin del período de IVA de un producto por su código.
-     * 
-     * @param codigo código del producto
-     * @param nuevaFecha nueva fecha de fin
-     * @return true si se actualizó correctamente
+     * Cambia la fecha final del período de IVA de un producto.
      */
     public boolean cambiarFechaFinalIVA(String codigo, LocalDate nuevaFecha) {
         for (Producto p : productos) {
@@ -151,12 +145,9 @@ public class Supermercado implements OperacionesSupermercado{
         return false;
     }
 
-    
-     /**
+    /**
      * Representación textual del supermercado y su inventario.
      */
-    
-    // Método toString
     @Override
     public String toString() {
         String salida = "Supermercado: " + nombre + "\nTelefono: " + telefono + "\nProductos:\n";
@@ -166,4 +157,3 @@ public class Supermercado implements OperacionesSupermercado{
         return salida;
     }
 }
-

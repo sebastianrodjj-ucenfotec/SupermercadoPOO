@@ -7,60 +7,50 @@ package Classes;
 import java.time.LocalDate;
 
 /**
- * Interfaz que define las operaciones básicas para un supermercado.
- * Cubre la inserción y búsqueda de productos, así como cálculos de inversión,
- * valor de venta, ganancia y control de productos expirados.
- * 
- * Puede ser implementada por cualquier clase que represente un supermercado.
+ * Interfaz que define las operaciones básicas que debe implementar un supermercado.
+ * Incluye inserción de productos y cálculos financieros sobre el inventario.
  * 
  * @author sebas
  */
 public interface OperacionesSupermercado {
 
     /**
-     * Inserta un nuevo producto en la estructura interna del supermercado.
+     * Inserta un nuevo producto en el inventario.
      * 
-     * @param p objeto Producto a insertar
+     * @param p producto a agregar
+     * @return true si se agrega con éxito
      */
-    public void insertarProducto(Producto p);
+    public boolean insertarProducto(Producto p);
 
     /**
-     * Busca un producto por su código identificador.
+     * Calcula la inversión total de productos no vencidos.
      * 
-     * @param cod código del producto
-     * @return objeto Producto si se encontró, null en caso contrario
+     * @param fecha fecha de corte para evaluar vencimiento
+     * @return valor total invertido
      */
-    public Producto buscarProducto(String cod);
+    public double calcularInversionTotal(LocalDate fecha);
 
     /**
-     * Calcula la inversión total de productos vigentes, tomando en cuenta la fecha de corte.
+     * Calcula el valor total de venta de productos vigentes.
      * 
-     * @param fechaCorte fecha límite para evaluar vigencia
-     * @return valor total de la inversión en colones
+     * @param fecha fecha límite de vigencia
+     * @return valor de venta total estimado
      */
-    public double calcularInversionTotal(LocalDate fechaCorte);
+    public double calcularValorDeVenta(LocalDate fecha);
 
     /**
-     * Calcula el valor de venta total de los productos vigentes.
+     * Calcula la ganancia estimada sobre los productos vigentes.
      * 
-     * @param fechaCorte fecha límite para evaluar vigencia
-     * @return valor total de venta en colones
+     * @param fecha fecha de corte
+     * @return utilidad neta
      */
-    public double calcularValorDeVenta(LocalDate fechaCorte);
+    public double calcularGanancia(LocalDate fecha);
 
     /**
-     * Calcula la ganancia estimada considerando el margen de utilidad por producto.
+     * Cuenta la cantidad de productos vencidos a la fecha dada.
      * 
-     * @param fechaCorte fecha límite para evaluar vigencia
-     * @return ganancia total en colones
+     * @param fecha fecha de evaluación
+     * @return número de productos expirados
      */
-    public double calcularGanancia(LocalDate fechaCorte);
-
-    /**
-     * Cuenta cuántos productos están expirados para la fecha dada.
-     * 
-     * @param fechaCorte fecha utilizada para evaluar si un producto está vencido
-     * @return cantidad de productos expirados
-     */
-    public int contarProductosExpirados(LocalDate fechaCorte);
+    public int contarProductosExpirados(LocalDate fecha);
 }
