@@ -54,6 +54,8 @@ public class Main {
         System.out.println("Valor total de venta (vigentes): " + supermercado.calcularValorDeVenta(fechaCorte) + " Colones");
         System.out.println("Ganancia estimada: " + supermercado.calcularGanancia(fechaCorte) + " Colones");
         System.out.println("Cantidad de productos vencidos: " + supermercado.contarProductosExpirados(fechaCorte));
+        
+        System.out.println("\n--------------------------\n");
 
         /*
          * === INICIO DEL MÓDULO DE CLIENTES ===

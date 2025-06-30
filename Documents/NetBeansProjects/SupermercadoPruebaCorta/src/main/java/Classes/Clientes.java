@@ -106,6 +106,6 @@ public class Clientes {
      */
     @Override
     public String toString() {
-        return "Cédula: " + cedula + "\nNombre: " + nombre + "\nTeléfono: " + telefono;
+        return "Cedula: " + cedula + "\nNombre: " + nombre + "\nTelefono: " + telefono;
     }
 }
