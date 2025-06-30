@@ -1,6 +1,9 @@
 Classes\IVA.class
-Classes\Supermercado.class
+Classes\ClienteMenu.class
+Classes\OperacionesCliente.class
+Classes\OperacionesSupermercado.class
 Classes\Expira.class
-Main\Main.class
+Classes\Clientes.class
+Classes\GestorClientes.class
 Classes\Periodo.class
 Classes\Producto.class

@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author sebas
  */
-public class Supermercado {
+public class Supermercado implements OperacionesSupermercado{
 
     /*
      Atributos:
